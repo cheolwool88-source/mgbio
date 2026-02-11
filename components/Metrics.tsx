@@ -14,6 +14,11 @@ const Metrics: React.FC = () => {
     displayName: m.name[language]
   }));
 
+  const getUnit = (unit: any) => {
+    if (typeof unit === 'string') return unit;
+    return unit[language] || unit['ko'];
+  };
+
   return (
     <section className="py-24 bg-slate-900 text-white overflow-hidden relative">
       <div className="absolute top-0 right-0 w-96 h-96 bg-green-600/20 blur-[120px] rounded-full" />
@@ -30,7 +35,7 @@ const Metrics: React.FC = () => {
             {IMPACT_METRICS.map((item, idx) => (
               <div key={idx} className="p-8 bg-white/5 border border-white/10 rounded-3xl backdrop-blur-sm hover:bg-white/10 transition-colors">
                 <div className="text-3xl lg:text-4xl font-bold text-green-400 mb-2">
-                  {item.value.toLocaleString()}{item.unit}
+                  {item.value.toLocaleString()}{getUnit(item.unit)}
                 </div>
                 <div className="text-slate-400 font-medium">{item.name[language]}</div>
               </div>

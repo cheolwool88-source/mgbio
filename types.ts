@@ -1,12 +1,16 @@
 
 import React from 'react';
 
-export type Language = 'ko' | 'zh' | 'ja';
+export type Language = 'ko' | 'zh';
 
 export interface BusinessArea {
   id: string;
   title: { [key in Language]: string };
   description: { [key in Language]: string };
+  detailsLabel: { [key in Language]: string };
+  details: { [key in Language]: string[] };
+  resultsLabel: { [key in Language]: string };
+  results: { [key in Language]: string[] };
   icon: React.ReactNode;
   imageUrl: string;
 }
@@ -25,5 +29,5 @@ export interface SuccessStory {
 export interface MetricData {
   name: { [key in Language]: string };
   value: number;
-  unit: string;
+  unit: { [key in Language]: string } | string;
 }

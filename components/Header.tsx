@@ -9,7 +9,7 @@ const Header: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [langMenuOpen, setLangMenuOpen] = useState(false);
-  const { language, setLanguage } = useLanguage();
+  const { language, setLanguage, setView, view } = useLanguage();
   const langRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -32,6 +32,24 @@ const Header: React.FC = () => {
 
   const t = (key: string) => UI_STRINGS[key][language];
 
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    if (href === '#contact') {
+      setView('contact');
+    } else if (href === '#business') {
+      setView('business');
+    } else if (href === '#cases') {
+      setView('cases');
+    } else if (href === '#tech') {
+      setView('tech');
+    } else if (href === '#about') {
+      setView('about');
+    } else {
+      setView('home');
+    }
+    setMobileMenuOpen(false);
+  };
+
   const navItems = [
     { name: t('nav_about'), href: '#about' },
     { name: t('nav_business'), href: '#business' },
@@ -42,21 +60,23 @@ const Header: React.FC = () => {
 
   const languages: { code: Language; label: string }[] = [
     { code: 'ko', label: '한국어 (KO)' },
-    { code: 'zh', label: '中文 (ZH)' },
-    { code: 'ja', label: '日本語 (JA)' },
+    { code: 'zh', label: '中文 (ZH)' }
   ];
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-white/90 backdrop-blur-md shadow-sm py-3' : 'bg-transparent py-5'}`}>
+    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled || view !== 'home' ? 'bg-white/90 backdrop-blur-md shadow-sm py-3' : 'bg-transparent py-5'}`}>
       <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
-        <div className="flex items-center gap-2">
+        <button 
+          onClick={() => setView('home')}
+          className="flex items-center gap-2"
+        >
           <div className="w-10 h-10 bg-green-600 rounded-lg flex items-center justify-center">
             <span className="text-white font-bold text-xl">M</span>
           </div>
           <span className="text-xl font-bold tracking-tight text-slate-900">
             MG Bio Serve
           </span>
-        </div>
+        </button>
 
         {/* Desktop Nav */}
         <div className="hidden md:flex gap-8 items-center">
@@ -64,7 +84,15 @@ const Header: React.FC = () => {
             <a 
               key={item.name} 
               href={item.href} 
-              className="text-sm font-medium text-slate-600 hover:text-green-600 transition-colors"
+              onClick={(e) => handleNavClick(e, item.href)}
+              className={`text-sm font-medium transition-colors ${
+                (item.href === '#contact' && view === 'contact') || 
+                (item.href === '#business' && view === 'business') ||
+                (item.href === '#cases' && view === 'cases') ||
+                (item.href === '#tech' && view === 'tech') ||
+                (item.href === '#about' && view === 'about')
+                ? 'text-green-600' : 'text-slate-600 hover:text-green-600'
+              }`}
             >
               {item.name}
             </a>
@@ -99,9 +127,12 @@ const Header: React.FC = () => {
             )}
           </div>
 
-          <a href="#contact" className="bg-green-600 text-white px-5 py-2 rounded-full text-sm font-semibold hover:bg-green-700 transition-colors">
+          <button 
+            onClick={() => setView('contact')}
+            className="bg-green-600 text-white px-5 py-2 rounded-full text-sm font-semibold hover:bg-green-700 transition-colors"
+          >
             {t('btn_consulting')}
-          </a>
+          </button>
         </div>
 
         {/* Mobile Toggle */}
@@ -120,7 +151,7 @@ const Header: React.FC = () => {
               key={item.name} 
               href={item.href} 
               className="text-lg font-medium text-slate-700"
-              onClick={() => setMobileMenuOpen(false)}
+              onClick={(e) => handleNavClick(e, item.href)}
             >
               {item.name}
             </a>

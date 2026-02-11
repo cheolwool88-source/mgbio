@@ -9,7 +9,7 @@ const LeafIcon = ({ className }: { className?: string }) => (
 );
 
 const Hero: React.FC = () => {
-  const { language } = useLanguage();
+  const { language, setView } = useLanguage();
   const t = (key: string) => UI_STRINGS[key][language];
 
   return (
@@ -37,10 +37,16 @@ const Hero: React.FC = () => {
           </p>
 
           <div className="flex flex-wrap gap-4">
-            <button className="px-8 py-4 bg-green-600 text-white rounded-xl font-bold text-lg hover:bg-green-700 shadow-lg shadow-green-200 transition-all flex items-center gap-2">
+            <button 
+              onClick={() => setView('cases')}
+              className="px-8 py-4 bg-green-600 text-white rounded-xl font-bold text-lg hover:bg-green-700 shadow-lg shadow-green-200 transition-all flex items-center gap-2"
+            >
               {t('hero_btn_cases')} <ArrowRight size={20} />
             </button>
-            <button className="px-8 py-4 bg-white text-slate-700 border border-slate-200 rounded-xl font-bold text-lg hover:bg-slate-50 transition-all">
+            <button 
+              onClick={() => setView('contact')}
+              className="px-8 py-4 bg-white text-slate-700 border border-slate-200 rounded-xl font-bold text-lg hover:bg-slate-50 transition-all"
+            >
               {t('hero_btn_inquiry')}
             </button>
           </div>
