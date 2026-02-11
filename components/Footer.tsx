@@ -1,7 +1,12 @@
 
 import React from 'react';
+import { useLanguage } from '../App';
+import { UI_STRINGS } from '../translations';
 
 const Footer: React.FC = () => {
+  const { language } = useLanguage();
+  const t = (key: string) => UI_STRINGS[key][language];
+
   return (
     <footer className="bg-slate-50 py-16 border-t border-slate-200">
       <div className="max-w-7xl mx-auto px-6">
@@ -16,48 +21,40 @@ const Footer: React.FC = () => {
               </span>
             </div>
             <p className="text-slate-500 text-sm leading-relaxed">
-              자연에서 찾은 답으로 지구의 내일을 그리는 <br />
-              글로벌 바이오 솔루션 파트너입니다.
+              {t('footer_desc')}
             </p>
           </div>
           
           <div>
-            <h4 className="font-bold text-slate-900 mb-6">Company</h4>
+            <h4 className="font-bold text-slate-900 mb-6">{t('footer_company')}</h4>
             <ul className="space-y-4 text-sm text-slate-500">
-              <li><a href="#about" className="hover:text-green-600">회사소개</a></li>
-              <li><a href="#tech" className="hover:text-green-600">기술연구</a></li>
-              <li><a href="#" className="hover:text-green-600">공지사항</a></li>
-              <li><a href="#" className="hover:text-green-600">채용안내</a></li>
+              <li><a href="#about" className="hover:text-green-600">{t('nav_about')}</a></li>
+              <li><a href="#tech" className="hover:text-green-600">{t('nav_tech')}</a></li>
             </ul>
           </div>
 
           <div>
-            <h4 className="font-bold text-slate-900 mb-6">Business</h4>
+            <h4 className="font-bold text-slate-900 mb-6">{t('footer_business')}</h4>
             <ul className="space-y-4 text-sm text-slate-500">
-              <li><a href="#business" className="hover:text-green-600">토양 개선</a></li>
-              <li><a href="#business" className="hover:text-green-600">폐기물 처리</a></li>
-              <li><a href="#business" className="hover:text-green-600">동애등애 시스템</a></li>
-              <li><a href="#business" className="hover:text-green-600">기술 컨설팅</a></li>
+              <li><a href="#business" className="hover:text-green-600">Bio Solution</a></li>
+              <li><a href="#business" className="hover:text-green-600">Waste Tech</a></li>
             </ul>
           </div>
 
           <div>
-            <h4 className="font-bold text-slate-900 mb-6">Support</h4>
+            <h4 className="font-bold text-slate-900 mb-6">{t('footer_support')}</h4>
             <ul className="space-y-4 text-sm text-slate-500">
-              <li><a href="#contact" className="hover:text-green-600">문의하기</a></li>
-              <li><a href="#" className="hover:text-green-600">자료실</a></li>
-              <li><a href="#" className="hover:text-green-600">개인정보처리방침</a></li>
-              <li><a href="#" className="hover:text-green-600">이용약관</a></li>
+              <li><a href="#contact" className="hover:text-green-600">{t('nav_contact')}</a></li>
+              <li><a href="#" className="hover:text-green-600">Privacy Policy</a></li>
             </ul>
           </div>
         </div>
 
         <div className="pt-8 border-t border-slate-200 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-400">
-          <p>© 2024 MG Bio Serve Inc. All Rights Reserved.</p>
+          <p>{t('footer_rights')}</p>
           <div className="flex gap-6">
             <a href="#" className="hover:text-slate-600">Linkedin</a>
             <a href="#" className="hover:text-slate-600">Youtube</a>
-            <a href="#" className="hover:text-slate-600">Instagram</a>
           </div>
         </div>
       </div>
