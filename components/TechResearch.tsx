@@ -15,23 +15,55 @@ const TechResearch: React.FC<TechResearchProps> = ({ isStandalone = false }) => 
   const features = [
     { 
       icon: <Microscope className="w-6 h-6" />, 
-      title: { ko: '독자 미생물 배양 기술', zh: '独特微生物培养技术' }, 
-      desc: { ko: '극한 환경에서도 높은 활성도를 유지하는 균주 선별 및 배양 노하우', zh: '在极端环境下也能保持高活性的菌株筛选和培养秘诀' }
+      title: { 
+        ko: '독자 미생물 배양 기술', 
+        zh: '独特微生物培养技术',
+        en: 'Proprietary Microbe Cultivation'
+      }, 
+      desc: { 
+        ko: '극한 환경에서도 높은 활성도를 유지하는 균주 선별 및 배양 노하우', 
+        zh: '在极端环境下也能保持高活性的菌株筛选和培养秘诀',
+        en: 'Expertise in strain selection and cultivation maintaining high activity in extreme environments.'
+      }
     },
     { 
       icon: <Activity className="w-6 h-6" />, 
-      title: { ko: '실시간 현장 분석 시스템', zh: '实时现场分析系统' }, 
-      desc: { ko: 'IoT 기반 센싱을 통한 토양/폐기물 처리 상태 실시간 모니터링', zh: '通过基于物联网的传感实时监测土壤/废物处理状态' }
+      title: { 
+        ko: '실시간 현장 분석 시스템', 
+        zh: '实时现场分析系统',
+        en: 'Real-time Field Analysis'
+      }, 
+      desc: { 
+        ko: 'IoT 기반 센싱을 통한 토양/폐기물 처리 상태 실시간 모니터링', 
+        zh: '通过基于物联网的传感实时监测土壤/废物处理状态',
+        en: 'IoT-based real-time monitoring of soil and organic waste treatment status.'
+      }
     },
     { 
       icon: <Award className="w-6 h-6" />, 
-      title: { ko: '글로벌 특허 및 인증', zh: '全球专利与认证' }, 
-      desc: { ko: '미국, 중국, 한국 등 주요 시장 15개 이상의 핵심 기술 특허 보유', zh: '在美国、中国、韩国等主要市场拥有超过15项核心技术专利' }
+      title: { 
+        ko: '글로벌 특허 및 인증', 
+        zh: '全球专利与认证',
+        en: 'Global Patents & Certs'
+      }, 
+      desc: { 
+        ko: '미국, 중국, 한국 등 주요 시장 15개 이상의 핵심 기술 특허 보유', 
+        zh: '在美国、中国、韩国等主要市场拥有超过15项核心技术专利',
+        en: 'Over 15 core technology patents across major markets including US, China, and Korea.'
+      }
     },
     { 
       icon: <FileText className="w-6 h-6" />, 
-      title: { ko: '기술 리포트 아카이브', zh: '技术报告存档' }, 
-      desc: { ko: '수년간 축적된 현장 분석 데이터 기반의 과학적 검증 체계', zh: '基于多年积累的现场分析数据的科学验证体系' }
+      title: { 
+        ko: '기술 리포트 아카이브', 
+        zh: '技术报告存档',
+        en: 'Technical Report Archive'
+      }, 
+      desc: { 
+        ko: '수년간 축적된 현장 분석 데이터 기반의 과학적 검증 체계', 
+        zh: '基于多年积累的现场分析数据的科学验证体系',
+        en: 'Scientific verification system based on years of accumulated field analysis data.'
+      }
     },
   ];
 
@@ -57,8 +89,8 @@ const TechResearch: React.FC<TechResearchProps> = ({ isStandalone = false }) => 
                 <div className="w-14 h-14 bg-white rounded-2xl flex items-center justify-center text-green-600 shadow-sm mb-8 group-hover:scale-110 group-hover:bg-green-600 group-hover:text-white transition-all duration-500">
                   {f.icon}
                 </div>
-                <h4 className="font-bold text-2xl mb-4 text-slate-900">{f.title[language]}</h4>
-                <p className="text-slate-500 leading-relaxed">{f.desc[language]}</p>
+                <h4 className="font-bold text-2xl mb-4 text-slate-900">{f.title[language] || f.title['ko']}</h4>
+                <p className="text-slate-500 leading-relaxed">{f.desc[language] || f.desc['ko']}</p>
               </div>
             ))}
           </div>

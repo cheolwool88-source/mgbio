@@ -1,7 +1,7 @@
 
 import React from 'react';
 
-export type Language = 'ko' | 'zh';
+export type Language = 'ko' | 'zh' | 'en';
 
 export interface BusinessArea {
   id: string;

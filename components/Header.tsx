@@ -60,7 +60,8 @@ const Header: React.FC = () => {
 
   const languages: { code: Language; label: string }[] = [
     { code: 'ko', label: '한국어 (KO)' },
-    { code: 'zh', label: '中文 (ZH)' }
+    { code: 'zh', label: '中文 (ZH)' },
+    { code: 'en', label: 'English (EN)' }
   ];
 
   return (
@@ -110,7 +111,7 @@ const Header: React.FC = () => {
             </button>
             
             {langMenuOpen && (
-              <div className="absolute right-0 mt-2 w-40 bg-white rounded-xl shadow-xl border border-slate-100 py-2 overflow-hidden">
+              <div className="absolute right-0 mt-2 w-44 bg-white rounded-xl shadow-xl border border-slate-100 py-2 overflow-hidden">
                 {languages.map((lang) => (
                   <button
                     key={lang.code}
